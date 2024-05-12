@@ -52,13 +52,15 @@ class EmailView extends StatelessWidget {
               children: [
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 16),
-                  child: Row(children: [
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
                     SizedBox(
-                      width: MediaQuery.of(context).size.width * .5,
+                      width: MediaQuery.of(context).size.width * .6,
                       child: Text(
                         email.title,
                         style: const TextStyle(fontSize: 18,),
-                        overflow: TextOverflow.ellipsis,
+                        // overflow: TextOverflow.ellipsis,
                       ),
                     ),
                     const SizedBox(width: 10,),
@@ -66,7 +68,7 @@ class EmailView extends StatelessWidget {
                       Icons.label_important,
                       color: Colors.amber[500],
                     ),
-                    const SizedBox(width: 10,),
+                    const SizedBox(width: 4,),
 
                     Container(
                       padding:
