@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gmail_clone/components/featue_card.dart';
 import 'package:gmail_clone/model/feature.dart';
+import 'package:gmail_clone/pages/join_meeting_page.dart';
 
 class MeetPage extends StatelessWidget {
   const MeetPage({super.key});
@@ -36,7 +37,10 @@ class MeetPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 ElevatedButton(onPressed: () {}, child: const Text('New Meeting')),
-                ElevatedButton(onPressed: () {}, child: const Text('Join with a code')),
+                ElevatedButton(onPressed: () {
+                  Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => const JoinMeeting()));
+                }, child: const Text('Join with a code')),
               ],
             ),
           ),
