@@ -44,9 +44,11 @@ class MeetPage extends StatelessWidget {
               ],
             ),
           ),
+          const SizedBox(height: 10,),
+
           SizedBox(
-            height: 250,
-            width: 225,
+            height: 400,
+            width: 250,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
               itemCount: getFeatures().length,

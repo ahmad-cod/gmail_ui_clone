@@ -18,7 +18,7 @@ List<Feature> _features = const [
       cardImage: 'safe_meeting',
       cardTitle: 'Your meeting is safe',
       cardDescription:
-          'Invited can join a meeting'),
+          ' No one can join a meeting unless invited or admitted by the host'),
 ];
 
 List getFeatures () {
