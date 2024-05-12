@@ -38,7 +38,7 @@ List _emails = const [
   Email(
       senderImage: 'maafy.jpeg',
       senderName: 'Veiled Pharmacist',
-      title: 'Pharmaceutical Science in Islam',
+      title: 'Medical Science in Islam',
       message:
           'Islamic scholars built upon earlier traditions and emphasized a scientific approach, with experimentation and record-keeping.',
       time: '11:58am'),

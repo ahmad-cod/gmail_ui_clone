@@ -52,36 +52,36 @@ class EmailView extends StatelessWidget {
               children: [
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 16),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width * .6,
-                      child: Text(
+                  child: SizedBox(
+                      width: MediaQuery.of(context).size.width * .78,
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                      Text(
                         email.title,
                         style: const TextStyle(fontSize: 18,),
                         // overflow: TextOverflow.ellipsis,
                       ),
-                    ),
-                    const SizedBox(width: 10,),
-                    Icon(
-                      Icons.label_important,
-                      color: Colors.amber[500],
-                    ),
-                    const SizedBox(width: 4,),
-
-                    Container(
-                      padding:
-                          const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(7),
-                          border: Border.all(color: Colors.grey)),
-                      child: const Text(
-                        'inbox',
-                        style: TextStyle(fontSize: 12),
+                      // const SizedBox(width: 1,),
+                      Icon(
+                        Icons.label_important,
+                        color: Colors.amber[500],
                       ),
-                    )
-                  ]),
+                      const SizedBox(width: 3,),
+                    
+                      Container(
+                        padding:
+                            const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(7),
+                            border: Border.all(color: Colors.grey)),
+                        child: const Text(
+                          'inbox',
+                          style: TextStyle(fontSize: 12),
+                        ),
+                      )
+                    ]),
+                  ),
                 ),
                 IconButton(
                     onPressed: () {},
@@ -98,12 +98,15 @@ class EmailView extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
              
-                CircleAvatar(
-                  backgroundImage:
-                      AssetImage('lib/images/${email.senderImage}'),
-                  radius: 24,
+                Container(
+                  margin: const EdgeInsets.only(left: 4),
+                  child: CircleAvatar(
+                    backgroundImage:
+                        AssetImage('lib/images/${email.senderImage}'),
+                    radius: 24,
+                  ),
                 ),
-             
+             const SizedBox(width: 2,),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
