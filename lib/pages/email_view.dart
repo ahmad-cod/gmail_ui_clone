@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:gmail_clone/model/email.dart';
 
 class EmailView extends StatelessWidget {

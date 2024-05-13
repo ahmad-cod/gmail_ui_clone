@@ -9,7 +9,7 @@ class JoinMeeting extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.grey[850],
         title: const Text('Join with a Code', style: TextStyle(color: Colors.white70),),
-        iconTheme: IconThemeData(color: Colors.white70),
+        iconTheme: const IconThemeData(color: Colors.white70),
         actions: const [
           Padding(
             padding: EdgeInsets.only(right: 20.0),
@@ -54,7 +54,7 @@ class JoinMeeting extends StatelessWidget {
               width: 200,
               padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(10)),
+                borderRadius: const BorderRadius.all(Radius.circular(10)),
                 border: Border.all(color: Colors.white70)
               ),
               child: const Row(
