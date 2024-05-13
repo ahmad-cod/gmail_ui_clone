@@ -1,5 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gmail_clone/model/email.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class EmailView extends StatelessWidget {
   const EmailView({super.key, required this.email});
@@ -50,16 +52,19 @@ class EmailView extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 16),
+                  padding: const EdgeInsets.symmetric(horizontal: 13, vertical: 16),
                   child: SizedBox(
-                      width: MediaQuery.of(context).size.width * .78,
+                      width: MediaQuery.of(context).size.width * .76,
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                       Text(
                         email.title,
-                        style: const TextStyle(fontSize: 18,),
-                        // overflow: TextOverflow.ellipsis,
+                        style: GoogleFonts.lobster(
+                          textStyle: const TextStyle(
+                            fontSize: 18,
+                          ),
+                          ),
                       ),
                       // const SizedBox(width: 1,),
                       Icon(
@@ -138,7 +143,7 @@ class EmailView extends StatelessWidget {
                 const SizedBox(width: 20,),
                 Icon(Icons.emoji_emotions_outlined, color: Colors.grey[300],),
 
-                Icon(Icons.subdirectory_arrow_left, color: Colors.grey[300]),
+                Icon(CupertinoIcons.arrow_turn_up_left, color: Colors.grey[300]),
 
 
                 Icon(Icons.more_vert, color: Colors.grey[300],),
@@ -148,13 +153,15 @@ class EmailView extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 25),
               child: Text(email.message,
-                style: TextStyle(
+                style: GoogleFonts.robotoFlex(
+                  textStyle: TextStyle(
                   fontSize: 16,
                   height: 1.9,
                   // leadingDistribution: TextLeadingDistribution.even,
                   // wordSpacing: 8,
                   color: Colors.grey[200],
                 ),
+                )
               ),
             )
           ]),
