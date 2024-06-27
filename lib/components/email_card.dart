@@ -45,10 +45,10 @@ class EmailCard extends StatelessWidget {
               ),
               IconButton(
                   onPressed: () {},
-                  icon: const Icon(
-                    Icons.star_border_outlined,
-                    color: Colors.white54,
-                  ))
+                  icon: email.isStarred!
+                      ? const Icon(Icons.star, color: Colors.amber)
+                      : Icon(Icons.star_border, color: Colors.grey[300],)
+                        )
             ],
           ),
         ),
