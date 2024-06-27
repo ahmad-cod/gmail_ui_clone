@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gmail_clone/components/email_card.dart';
+import 'package:gmail_clone/components/my_drawer.dart';
 import 'package:gmail_clone/model/email.dart';
 
 class EmailsPage extends StatelessWidget {
@@ -9,11 +10,18 @@ class EmailsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey[850],
+      drawer: const MyDrawer(),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {},
         backgroundColor: const Color.fromARGB(174, 9, 128, 225),
-        label: const Text('Compose', style: TextStyle(color: Colors.white70),),
-        icon: const Icon(Icons.edit, color: Colors.white70,),
+        label: const Text(
+          'Compose',
+          style: TextStyle(color: Colors.white70),
+        ),
+        icon: const Icon(
+          Icons.edit,
+          color: Colors.white70,
+        ),
       ),
       body: SafeArea(
         child: Padding(
@@ -34,12 +42,16 @@ class EmailsPage extends StatelessWidget {
                   children: [
                     Row(
                       children: [
-                        IconButton(
-                            onPressed: () {},
-                            icon: const Icon(
-                              Icons.menu,
-                              color: Colors.white60,
-                            )),
+                        Builder(builder: (context) {
+                          return IconButton(
+                              onPressed: () {
+                                Scaffold.of(context).openDrawer();
+                              },
+                              icon: const Icon(
+                                Icons.menu,
+                                color: Colors.white60,
+                              ));
+                        }),
                         const SizedBox(
                           width: 10,
                         ),
