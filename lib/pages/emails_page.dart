@@ -1,24 +1,60 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:gmail_clone/components/email_card.dart';
 import 'package:gmail_clone/components/my_drawer.dart';
 import 'package:gmail_clone/model/email.dart';
 
-class EmailsPage extends StatelessWidget {
-  const EmailsPage({super.key});
+class EmailsPage extends StatefulWidget {
+  const EmailsPage({super.key, required this.scrollController,});
+  final ScrollController scrollController;
 
   @override
+  State<EmailsPage> createState() => _EmailsPageState();
+}
+
+class _EmailsPageState extends State<EmailsPage> {
+  bool _isExtended = true;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    widget.scrollController.addListener(_onScroll);
+  }
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    widget.scrollController.removeListener(_onScroll);
+    widget.scrollController.dispose();
+    super.dispose();
+  }
+
+  void _onScroll() {
+    if (widget.scrollController.position.userScrollDirection == ScrollDirection.reverse) {
+      if (_isExtended) {
+        setState(() {
+          _isExtended = false;
+        });
+      }
+    } else if (widget.scrollController.position.userScrollDirection == ScrollDirection.forward) {
+      if (!_isExtended) {
+        setState(() {
+          _isExtended = true;
+        });
+      }
+    }
+  }
+  
+  @override
   Widget build(BuildContext context) {
+    // print(widget.isExtended ? "Extended" : "not extended");
     return Scaffold(
-      backgroundColor: Colors.grey[850],
       drawer: const MyDrawer(),
-      drawerScrimColor: Colors.transparent,
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {},
-        backgroundColor: const Color.fromARGB(174, 9, 128, 225),
-        label: const Text(
+        label: _isExtended ? const Text(
           'Compose',
           style: TextStyle(color: Colors.white70),
-        ),
+        ) : const Text(''),
         icon: const Icon(
           Icons.edit,
           color: Colors.white70,
@@ -27,11 +63,10 @@ class EmailsPage extends StatelessWidget {
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10),
-          child: CustomScrollView(slivers: [
+          child: CustomScrollView(
+            controller: widget.scrollController,
+            slivers: [
             SliverAppBar(
-              iconTheme: IconThemeData(
-                color: Colors.grey[300],
-              ),
               backgroundColor: Colors.grey[800],
               floating: true,
               shape: RoundedRectangleBorder(
@@ -45,7 +80,6 @@ class EmailsPage extends StatelessWidget {
                       children: [
                         Text(
                           'Search in mail',
-                          style: TextStyle(fontSize: 16, color: Colors.white70),
                         ),
                       ],
                     ),
@@ -61,6 +95,9 @@ class EmailsPage extends StatelessWidget {
                   ),
                 )
               ],
+            ),
+            const SliverToBoxAdapter(
+              child: Text('Primary'),
             ),
             SliverList.builder(
                 itemCount: getEmails().length,
