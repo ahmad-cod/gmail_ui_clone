@@ -11,6 +11,7 @@ class EmailsPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.grey[850],
       drawer: const MyDrawer(),
+      drawerScrimColor: Colors.transparent,
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {},
         backgroundColor: const Color.fromARGB(174, 9, 128, 225),
@@ -25,70 +26,47 @@ class EmailsPage extends StatelessWidget {
       ),
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 14),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              // search row
-              Container(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-                decoration: BoxDecoration(
-                  color: Colors.grey[700],
-                  borderRadius: BorderRadius.circular(30),
-                ),
-                child: Row(
+          padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10),
+          child: CustomScrollView(slivers: [
+            SliverAppBar(
+              iconTheme: IconThemeData(
+                color: Colors.grey[300],
+              ),
+              backgroundColor: Colors.grey[800],
+              floating: true,
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(30)),
+              title: Container(
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                child: const Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Row(
                       children: [
-                        Builder(builder: (context) {
-                          return IconButton(
-                              onPressed: () {
-                                Scaffold.of(context).openDrawer();
-                              },
-                              icon: const Icon(
-                                Icons.menu,
-                                color: Colors.white60,
-                              ));
-                        }),
-                        const SizedBox(
-                          width: 10,
-                        ),
-                        const Text(
+                        Text(
                           'Search in mail',
                           style: TextStyle(fontSize: 16, color: Colors.white70),
                         ),
                       ],
                     ),
-                    const CircleAvatar(
-                      maxRadius: 18,
-                      backgroundImage: AssetImage('lib/images/ahmadDp.png'),
-                    )
                   ],
                 ),
               ),
-
-              // text that shows the category of emails
-              const SizedBox(height: 16),
-              const Text(
-                'Primary',
-                style: TextStyle(
-                  color: Colors.white70,
-                  fontSize: 13,
-                ),
-              ),
-
-              // email lists
-              const SizedBox(height: 8),
-
-              Expanded(
-                  child: ListView.builder(
-                      itemCount: getEmails().length,
-                      itemBuilder: (context, index) =>
-                          EmailCard(email: getEmails()[index])))
-            ],
-          ),
+              actions: const [
+                Padding(
+                  padding: EdgeInsets.only(right: 16.0),
+                  child: CircleAvatar(
+                    maxRadius: 18,
+                    backgroundImage: AssetImage('lib/images/ahmadDp.png'),
+                  ),
+                )
+              ],
+            ),
+            SliverList.builder(
+                itemCount: getEmails().length,
+                itemBuilder: (context, index) =>
+                    EmailCard(email: getEmails()[index]))
+          ]),
         ),
       ),
     );
