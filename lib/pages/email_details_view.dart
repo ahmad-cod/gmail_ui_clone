@@ -1,12 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:gmail_clone/controllers/email_controller.dart';
 import 'package:gmail_clone/model/email.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class EmailView extends StatelessWidget {
-  const EmailView({super.key, required this.email});
+  EmailView({super.key, required this.email,});
 
   final Email email;
+  final EmailController emailController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -14,33 +17,37 @@ class EmailView extends StatelessWidget {
         appBar: AppBar(
           backgroundColor: Colors.grey[800],
           elevation: 0,
-          actions: const [
-            Icon(
+          actions: [
+            const Icon(
               Icons.archive_outlined,
               color: Colors.white70,
             ),
-            SizedBox(
+            const SizedBox(
               width: 14,
             ),
-            Icon(
-              Icons.delete,
+            IconButton(
+              icon: const Icon(Icons.delete),
+              onPressed: () => {
+                emailController.deleteEmail(email),
+                Get.back()
+              },
               color: Colors.white70,
             ),
-            SizedBox(
+            const SizedBox(
               width: 14,
             ),
-            Icon(
+            const Icon(
               Icons.email_outlined,
               color: Colors.white70,
             ),
-            SizedBox(
+            const SizedBox(
               width: 14,
             ),
-            Icon(
+            const Icon(
               Icons.more_vert,
               color: Colors.white70,
             ),
-            SizedBox(
+            const SizedBox(
               width: 14,
             ),
           ],
