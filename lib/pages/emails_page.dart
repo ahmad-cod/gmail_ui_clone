@@ -49,17 +49,24 @@ class _EmailsPageState extends State<EmailsPage> {
     // print(widget.isExtended ? "Extended" : "not extended");
     return Scaffold(
       drawer: const MyDrawer(),
-      floatingActionButton: FloatingActionButton.extended(
+      floatingActionButton: _isExtended ? FloatingActionButton.extended(
         onPressed: () {},
-        label: _isExtended ? const Text(
+        label: const Text(
           'Compose',
           style: TextStyle(color: Colors.white70),
-        ) : const Text(''),
+        ),
         icon: const Icon(
           Icons.edit,
           color: Colors.white70,
         ),
-      ),
+      ) : 
+      FloatingActionButton(
+        onPressed: () {},
+        child: const Icon(
+          Icons.edit,
+          color: Colors.white70,
+        ),
+        ),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10),
