@@ -97,7 +97,15 @@ class _EmailsPageState extends State<EmailsPage> {
               ],
             ),
             const SliverToBoxAdapter(
-              child: Text('Primary'),
+              child: Padding(
+                padding: EdgeInsets.symmetric(vertical: 16.0),
+                child: Text(
+                  'Primary',
+                  style: TextStyle(
+                    fontSize: 12
+                  ),
+                ),
+              ),
             ),
             SliverList.builder(
                 itemCount: getEmails().length,

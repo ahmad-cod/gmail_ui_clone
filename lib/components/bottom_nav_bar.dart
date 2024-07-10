@@ -14,9 +14,10 @@ class MyBottomNavbar extends StatelessWidget {
         color: Colors.grey[800],
       ),
       child: GNav(
-        color: Colors.grey[300],
-        tabBackgroundColor: Colors.blue,
-        padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 22),
+        color: const Color(0xFFCCCCCC),
+        tabBackgroundColor: const Color(0xFF7AA7FF),
+        tabMargin: const EdgeInsets.symmetric(horizontal: 32, vertical: 7),
+        padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 22),
         onTabChange: (value) => handleTabChange!(value),
         tabs: const [
           GButton(icon: Icons.email,),
