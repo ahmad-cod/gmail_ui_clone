@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:gmail_clone/components/custom_list_tile.dart';
 import 'package:gmail_clone/model/email.dart';
-import 'package:gmail_clone/pages/email_view.dart';
+import 'package:gmail_clone/pages/email_details_view.dart';
 
 class EmailCard extends StatelessWidget {
-  const EmailCard({super.key, required this.email});
+  const EmailCard({super.key, required this.email,});
 
   final Email email;
 
@@ -12,8 +13,7 @@ class EmailCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       child: CustomListTile(
-        onTap: () => Navigator.push(context,
-            MaterialPageRoute(builder: (context) => EmailView(email: email))),
+        onTap: () => Get.to(() => EmailView(email: email,)),
         leading: CircleAvatar(
           backgroundImage: AssetImage('lib/images/${email.senderImage}'),
         ),

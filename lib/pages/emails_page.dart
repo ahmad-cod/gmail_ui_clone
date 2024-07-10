@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:get/get.dart';
 import 'package:gmail_clone/components/email_card.dart';
 import 'package:gmail_clone/components/my_drawer.dart';
-import 'package:gmail_clone/model/email.dart';
+import 'package:gmail_clone/controllers/email_controller.dart';
 
 class EmailsPage extends StatefulWidget {
-  const EmailsPage({super.key, required this.scrollController,});
+  const EmailsPage({
+    super.key,
+    required this.scrollController,
+  });
   final ScrollController scrollController;
 
   @override
@@ -14,12 +18,14 @@ class EmailsPage extends StatefulWidget {
 
 class _EmailsPageState extends State<EmailsPage> {
   bool _isExtended = true;
+  final EmailController controller = Get.put(EmailController());
+
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     widget.scrollController.addListener(_onScroll);
   }
+
   @override
   void dispose() {
     // TODO: implement dispose
@@ -29,13 +35,15 @@ class _EmailsPageState extends State<EmailsPage> {
   }
 
   void _onScroll() {
-    if (widget.scrollController.position.userScrollDirection == ScrollDirection.reverse) {
+    if (widget.scrollController.position.userScrollDirection ==
+        ScrollDirection.reverse) {
       if (_isExtended) {
         setState(() {
           _isExtended = false;
         });
       }
-    } else if (widget.scrollController.position.userScrollDirection == ScrollDirection.forward) {
+    } else if (widget.scrollController.position.userScrollDirection ==
+        ScrollDirection.forward) {
       if (!_isExtended) {
         setState(() {
           _isExtended = true;
@@ -43,36 +51,35 @@ class _EmailsPageState extends State<EmailsPage> {
       }
     }
   }
-  
+
   @override
   Widget build(BuildContext context) {
-    // print(widget.isExtended ? "Extended" : "not extended");
     return Scaffold(
       drawer: const MyDrawer(),
-      floatingActionButton: _isExtended ? FloatingActionButton.extended(
-        onPressed: () {},
-        label: const Text(
-          'Compose',
-          style: TextStyle(color: Colors.white70),
-        ),
-        icon: const Icon(
-          Icons.edit,
-          color: Colors.white70,
-        ),
-      ) : 
-      FloatingActionButton(
-        onPressed: () {},
-        child: const Icon(
-          Icons.edit,
-          color: Colors.white70,
-        ),
-        ),
+      floatingActionButton: _isExtended
+          ? FloatingActionButton.extended(
+              onPressed: () {},
+              label: const Text(
+                'Compose',
+                style: TextStyle(color: Colors.white70),
+              ),
+              icon: const Icon(
+                Icons.edit,
+                color: Colors.white70,
+              ),
+            )
+          : FloatingActionButton(
+              onPressed: () {},
+              child: const Icon(
+                Icons.edit,
+                color: Colors.white70,
+              ),
+            ),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10),
-          child: CustomScrollView(
-            controller: widget.scrollController,
-            slivers: [
+          child:
+              CustomScrollView(controller: widget.scrollController, slivers: [
             SliverAppBar(
               backgroundColor: Colors.grey[800],
               floating: true,
@@ -108,16 +115,16 @@ class _EmailsPageState extends State<EmailsPage> {
                 padding: EdgeInsets.symmetric(vertical: 16.0),
                 child: Text(
                   'Primary',
-                  style: TextStyle(
-                    fontSize: 12
-                  ),
+                  style: TextStyle(fontSize: 12),
                 ),
               ),
             ),
-            SliverList.builder(
-                itemCount: getEmails().length,
-                itemBuilder: (context, index) =>
-                    EmailCard(email: getEmails()[index]))
+            Obx(() {
+              return SliverList.builder(
+                  itemCount: controller.emails.length,
+                  itemBuilder: (context, index) =>
+                      EmailCard(email: controller.emails[index],));
+            })
           ]),
         ),
       ),
